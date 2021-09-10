@@ -5,8 +5,12 @@ const state = () => ({
 
 // getters
 const getters = {
-  getFeedbacksWithStatus: (state) => (key) =>
-    state.feedbacks.filter((name) => name.status === key),
+  getAllFeedbacksWithStatus: (state) => (key) =>
+    state.feedbacks.filter((feedback) => feedback.status === key),
+  showFeedbackWithId: (state) => (id) => {
+    const response = state.feedbacks.filter((feedback) => feedback.id == id);
+    return response;
+  },
 };
 
 // actions
