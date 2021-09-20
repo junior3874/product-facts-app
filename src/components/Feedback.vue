@@ -1,5 +1,5 @@
 <template>
-  <div class="content" v-bind:class="[view ? 'roadmap' : '', view]">
+  <div class="content-feedback" v-bind:class="[view ? 'roadmap' : '', view]">
     <div v-if="data" class="feedback-state">
       <p v-bind:class="data.name">{{ data.name }}</p>
     </div>
@@ -35,8 +35,8 @@ export default {
 };
 </script>
 
-<style lang="css">
-.content {
+<style scoped lang="css">
+.content-feedback {
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto;
@@ -53,17 +53,17 @@ export default {
 
   margin-bottom: 10px;
   border-radius: 10px;
-
   width: 100%;
+  max-width: 400px !important;
 }
 
-.content.roadmap.planned {
+.content-feedback.roadmap.planned {
   border-top: 5px solid var(--planned-color);
 }
-.content.roadmap.in-progress {
+.content-feedback.roadmap.in-progress {
   border-top: 5px solid var(--purple-color);
 }
-.content.roadmap.live {
+.content-feedback.roadmap.live {
   border-top: 5px solid var(--very-light-blue);
 }
 
