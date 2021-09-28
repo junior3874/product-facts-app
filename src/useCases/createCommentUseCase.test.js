@@ -26,7 +26,7 @@ describe("#Create comment use case", () => {
 
     const createCommentUseCase = new CreateCommentUseCase(mockShowFeedback);
 
-    const response = await createCommentUseCase.handler(userData);
+    const response = await createCommentUseCase.create(userData);
 
     const mockExpectedResult = {
       id: userData.feedbackId,

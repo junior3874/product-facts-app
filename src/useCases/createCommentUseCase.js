@@ -6,8 +6,11 @@ export default class CreateCommentUseCase {
     this.feedbackStorage = feedbackStorage;
   }
 
-  async handler(commentData) {
-    const findFeedback = await this.feedbackStorage.show(commentData.id);
+  async create(commentData) {
+    const findFeedback = await this.feedbackStorage.show(
+      commentData.feedbackId
+    );
+
     if (!findFeedback) throw new FeedbackNotFound();
 
     findFeedback.comments ??= [];
