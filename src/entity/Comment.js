@@ -2,16 +2,16 @@ import CommentDontHaveContent from "./errors/CommentDontHaveContent.js";
 import CommentIsMoreThan from "./errors/CommentIsMoreThan.js";
 
 export default class Comment {
-  constructor({ userId, message, userProps }) {
-    this.userId = userId;
+  constructor({ feedbackId, message, userProps }) {
+    this.feedbackId = feedbackId;
     this.message = message;
     this.userProps = userProps;
   }
 
-  static create({ userId, message, userProps }) {
+  static create({ feedbackId, message, userProps }) {
     CommentIsMoreThan.Validate(message);
     CommentDontHaveContent.Validate(message);
 
-    return new Comment({ userId, message, userProps });
+    return new Comment({ feedbackId, message, userProps });
   }
 }
