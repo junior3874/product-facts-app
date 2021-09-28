@@ -6,7 +6,7 @@ import CommentIsMoreThan from "./errors/CommentIsMoreThan";
 describe("#Comment", () => {
   test("should it create comment with sucess", () => {
     const response = Comment.create({
-      userId: 1,
+      feedbackId: 1,
       message: "Testing message",
       userProps: {},
     });
@@ -17,7 +17,7 @@ describe("#Comment", () => {
   test("should it NOT create comment because message is more than 250 caracteres", () => {
     const response = () =>
       Comment.create({
-        userId: 1,
+        feedbackId: 1,
         message:
           "Testing message,Testing message,Testing message,Testing message,Testing message,Testing message,Testing message,Testing message,Testing message,Testing message,Testing message,Testing message,Testing message,Testing message,Testing message,Testing message,Testing message,",
         userProps: {},
@@ -29,7 +29,7 @@ describe("#Comment", () => {
   test("should it NOT create comment because message is empty", () => {
     const response = () =>
       Comment.create({
-        userId: 1,
+        feedbackId: 1,
         message: "     ",
         userProps: {},
       });
