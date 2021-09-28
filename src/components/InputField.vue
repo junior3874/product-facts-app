@@ -1,16 +1,19 @@
 <template>
-  <input v-if="element == 'input'" name="" id="" />
+  <input ref="inputField" v-if="typeElement == 'input'" />
   <textarea v-else />
 </template>
 
 <script>
+import commentConstants from "../lib/CommentConsts.js";
+
 export default {
-  name: "inputField",
-  props: ["element"],
+  name: "InputField",
+  props: ["typeElement", "limit"],
 };
 </script>
 <style scoped>
-input {
+input,
+textarea {
   width: 100%;
   height: 48px;
   border-radius: 5px;
@@ -19,6 +22,8 @@ input {
   color: var(--dark-blue);
   padding: 0px 1.5em;
   outline: none;
+  border: 1px solid transparent;
+  font-size: 0.8125em;
 }
 
 input:hover,
@@ -31,7 +36,7 @@ textarea:focus {
 
 textarea {
   padding: 1.5em;
-  height: 150px;
+  height: 100px;
   resize: none;
   margin-bottom: 1.23em;
 }
