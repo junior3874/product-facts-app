@@ -3,9 +3,9 @@ import { RootState } from "..";
 import { User } from "../../entity/Feedback";
 
 export interface AuthState {
-  currentUser: {};
+  currentUser: User;
 }
-const state = () => ({
+const state = (): AuthState => ({
   currentUser: {} as User,
 });
 
