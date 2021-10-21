@@ -20,12 +20,12 @@
   </transition>
 </template>
 
-<script>
-import { ref } from "vue";
+<script lang="ts">
+import { defineComponent, ref } from "vue";
 
-export default {
+export default defineComponent({
   setup() {
-    const dropdown = ref(null);
+    const dropdown = ref({} as HTMLDivElement);
     return {
       dropdown,
     };
@@ -46,12 +46,19 @@ export default {
     },
   },
   methods: {
-    middlewareEventClickedOutside($event) {
-      if ($event.relatedTarget == $event.target.previousSibling) return;
+    middlewareEventClickedOutside($event: any) {
+      const relatedTarget = $event.relatedTarget;
+
+      if (
+        relatedTarget == $event.target.previousSibling ||
+        relatedTarget?.parentElement == $event.target.previousSibling
+      ) {
+        return;
+      }
       this.clickedOutside();
     },
   },
-};
+});
 </script>
 <style scoped>
 div {
