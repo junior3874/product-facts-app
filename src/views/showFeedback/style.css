@@ -1,0 +1,45 @@
+.loading {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading img {
+  width: 32px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+  padding: 2rem;
+  background-color: white;
+  min-height: inherit;
+}
+.top-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.base-area {
+  width: 100%;
+  background-color: white;
+}
+
+.base-area h1 {
+  margin-bottom: 30px;
+}
+
+.base-area .post-comment {
+  margin-top: 20px;
+}
+
+.base-area .post-comment div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
