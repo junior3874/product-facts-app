@@ -1,0 +1,172 @@
+:root {
+  --grid-gap: 20px;
+}
+
+header {
+  background-color: var(--navbar-color);
+  color: var(--light-gray);
+  padding: 1.625em 1.5em;
+  height: 100px;
+  display: flex;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  -moz-box-align: center;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 1.125em;
+  margin-top: 0.2em;
+}
+
+header div span {
+  font-weight: bold;
+  font-size: 0.8125em;
+}
+
+header div .go-back {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+header div .go-back img {
+  width: 11px;
+  margin-right: 10px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+main nav {
+  padding: 1.4em 0px;
+  border-bottom: 1px solid rgb(140, 146, 179);
+  width: 95%;
+  margin: 0 auto;
+}
+
+main nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+main nav ul li {
+  list-style: none;
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main nav ul li span {
+  display: none;
+  color: var(--grayish-blue);
+  font-size: 14px;
+}
+
+main nav ul li a {
+  min-width: 100%;
+}
+
+main nav ul li.active::after {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  content: "";
+  background-color: var(--purple-color);
+  top: 200%;
+}
+
+main nav ul li a {
+  font-size: 0.8125em;
+  font-weight: bold;
+  color: var(--grayish-blue);
+  width: 33%;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+main nav ul li a:hover {
+  transition: width 0.5s;
+  transform: scale(1.1);
+}
+
+main .grid-roadmap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: 24px;
+}
+
+main .grid-roadmap section {
+  flex-direction: column;
+  display: none;
+}
+
+main .grid-roadmap section h3 {
+  width: 100%;
+  font-size: 15px;
+  color: var(--dark-blue);
+  text-transform: capitalize;
+  text-align: left;
+}
+
+main .grid-roadmap section span {
+  color: var(--grayish-blue);
+  font-size: 14px;
+  display: flex;
+  text-align: left;
+  width: 100%;
+
+  margin-bottom: 30px;
+}
+
+main .grid-roadmap section.active {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  #roadmap-page {
+    padding: 2rem;
+  }
+
+  header {
+    border-radius: 16px;
+  }
+  main .grid-roadmap {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  main .grid-roadmap section {
+    display: flex;
+  }
+
+  main nav ul li.active::after {
+    display: none;
+  }
+
+  main nav ul li {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  main nav ul li a {
+    text-align: left;
+    font-size: 15px;
+    color: var(--dark-blue);
+  }
+
+  main nav {
+    display: none;
+  }
+
+  main nav ul li a:hover {
+    transform: none;
+  }
+}
