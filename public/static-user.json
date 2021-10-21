@@ -1,6 +1,7 @@
 {
   "currentUser": {
-    "image": "/assets/user-images/image-zena.jpg",
+    "id": 1,
+    "image": "https://randomuser.me/api/portraits/lego/4.jpg",
     "name": "Zena Kelley",
     "username": "velvetround"
   }
