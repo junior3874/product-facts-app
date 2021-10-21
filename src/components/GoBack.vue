@@ -1,15 +1,22 @@
 <template>
-  <div @click="onPressed">
+  <div @click="returnPreviousPage">
     <img src="../assets/arrow-left.svg" alt="" />
-    <a>Go back</a>
+    <a :class="{ gray: gray }">Go back</a>
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "GoBack",
-  props: ["onPressed"],
-};
+  props: ["gray"],
+  methods: {
+    returnPreviousPage() {
+      this.$router.back();
+    },
+  },
+});
 </script>
 
 <style scoped>
@@ -24,12 +31,17 @@ div img {
 }
 
 div a {
-  color: var(--grayish-blue);
+  color: white;
   font-weight: bold;
   font-size: 0.8125em;
   margin-left: 1.153em;
   transition: all 300ms ease-in-out 0s;
   text-decoration: none;
+  cursor: pointer;
+}
+
+div a.gray {
+  color: var(--grayish-blue);
 }
 div a:hover {
   text-decoration: underline;
