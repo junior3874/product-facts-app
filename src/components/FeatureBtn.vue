@@ -2,11 +2,13 @@
   <button @click="this.onPressed(name)">{{ name }}</button>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "@vue/runtime-core";
+
+export default defineComponent({
   name: "FeatureBtn",
   props: ["name", "onPressed", "active"],
-};
+});
 </script>
 <style scoped>
 button {
@@ -27,6 +29,7 @@ button {
   cursor: pointer;
 }
 button.active {
-  background-color: black;
+  background-color: var(--light-blue);
+  color: white;
 }
 </style>
