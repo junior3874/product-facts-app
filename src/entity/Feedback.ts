@@ -13,27 +13,15 @@ export class User {
 }
 
 export class Title {
-  public title: string;
   public static maxSize = 60;
-  constructor(title: string) {
-    this.title = title;
-  }
 }
 
 export class Category {
-  public static categorys = ["enhancement", "bug", "feature"];
-  public category: string;
-  constructor(category: string) {
-    this.category = category;
-  }
+  public static categorys = ["enhancement", "bug", "feature", "UI", "UX"];
 }
 
 export class Status {
-  public static status = ["UX", "UI", "in-progress", "live", "planned"];
-  public status: string;
-  constructor(status: string) {
-    this.status = status;
-  }
+  public static status = ["in-progress", "live", "planned"];
 }
 
 export class Upvote {
@@ -50,32 +38,40 @@ export class Upvote {
 
 export class Description {
   public static maxSize = 100;
-  public description: string;
-  constructor(description: string) {
-    this.description = description;
-  }
 }
+
 export class Comment {
-  public static maxSizeCommentMessage = 250;
+  public static maxSizeCommentContent = 250;
   public id: number;
   public user: User;
-  public message: string;
+  public content: string;
+  public replies?: Repliy[];
 
-  constructor({ id, user, message }: Comment) {
+  constructor({ id, user, content, replies }: Comment) {
     this.id = id;
     this.user = user;
-    this.message = message;
+    this.content = content;
+    this.replies = replies;
+  }
+}
+
+export class Repliy extends Comment {
+  public readonly commentId: number;
+  constructor({ id, user, content, commentId, replies }: Repliy) {
+    super({ id, user, content, replies });
+    this.commentId = commentId;
   }
 }
 
 export default class Feedback {
   public readonly id: number;
   public title: Title;
-  public category: Category;
+  public category: string;
   public upvotes: Upvote[];
-  public status: Status;
-  public description: Description;
-  public comments: Comment[];
+  public status: string;
+  public description: string;
+  public comments?: Comment[];
+  public readonly user: User;
 
   constructor(feedbackData: Feedback) {
     this.id = feedbackData.id;
@@ -85,5 +81,6 @@ export default class Feedback {
     this.status = feedbackData.status;
     this.description = feedbackData.description;
     this.comments = feedbackData.comments;
+    this.user = feedbackData.user;
   }
 }
