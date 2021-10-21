@@ -1,5 +1,9 @@
 <template>
-  <div class="content-feedback" v-bind:class="[view ? 'roadmap' : '', view]">
+  <div
+    class="content-feedback"
+    ref="containerRef"
+    v-bind:class="[view ? 'roadmap' : '', view]"
+  >
     <div v-if="data" class="feedback-state">
       <p v-bind:class="data.name">{{ data.name }}</p>
     </div>
@@ -8,7 +12,7 @@
       <span>{{ data.upvotes }}</span>
     </div>
     <div class="mid-content">
-      <h1>{{ data.title }}</h1>
+      <h1 @click="goToFeedback">{{ data.title }}</h1>
       <h2>{{ data.description }}</h2>
       <span>{{ data.category }}</span>
     </div>
@@ -20,25 +24,42 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Feedback from "@/entity/Feedback";
+import { defineComponent, PropType, ref } from "vue";
+
+export default defineComponent({
+  setup() {
+    const containerRef = ref({} as HTMLDivElement);
+    return { containerRef };
+  },
   props: {
     data: {
-      required: false,
-      type: Object,
+      required: true,
+      type: Object as PropType<Feedback>,
     },
     view: {
       required: false,
       type: String,
     },
   },
-};
+  methods: {
+    goToFeedback() {
+      this.$router.push(`/feedback/${this.data.id}`);
+    },
+  },
+
+  mounted() {
+    this.containerRef.addEventListener("click", () => {});
+  },
+});
 </script>
 
 <style scoped lang="css">
 .content-feedback {
   display: grid;
-  grid-template-columns: auto;
+
+  grid-template-columns: min-content auto;
   grid-template-rows: auto;
   grid-template-areas:
     "feedback-state feedback-state"
@@ -53,8 +74,7 @@ export default {
 
   margin-bottom: 10px;
   border-radius: 10px;
-  width: 100%;
-  max-width: 400px !important;
+  min-width: 100% !important;
 }
 
 .content-feedback.roadmap.planned {
@@ -134,6 +154,8 @@ export default {
   font-size: 0.8125em;
 
   color: var(--dark-blue);
+
+  cursor: pointer;
 }
 
 .mid-content h2 {
@@ -172,5 +194,39 @@ export default {
 
 .count-coments img {
   margin-right: 5px;
+}
+
+@media (min-width: 768px) {
+  [class="content-feedback"] {
+    grid-template-areas:
+      "count-votes feedback-state count-coments"
+      "count-votes mid-content count-coments"
+      "count-votes mid-content count-coments";
+  }
+
+  [class="content-feedback"] .count-votes {
+    align-self: center;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 10px 0 !important;
+    height: 60px;
+    width: 40px;
+    padding: 0;
+  }
+
+  [class="content-feedback"] .mid-content {
+    width: 100%;
+    margin-left: 20px;
+  }
+
+  .mid-content h1 {
+    font-size: 1.125em;
+  }
+
+  .mid-content h2 {
+    font-size: 1em;
+  }
 }
 </style>
