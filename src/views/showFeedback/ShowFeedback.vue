@@ -85,7 +85,7 @@ export default defineComponent({
   methods: {
     async postComment(message: string) {
       const response = await this.$requestService.createComment({
-        content: this.user.username + message,
+        content: message,
         id: this.currentIdParams,
         user: this.user,
       });
