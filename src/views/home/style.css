@@ -255,6 +255,7 @@ main {
 main .feedback-list {
   background: none;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 

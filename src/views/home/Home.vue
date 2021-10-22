@@ -95,9 +95,13 @@
       />
     </header>
     <main v-if="feedbacks">
-      <section class="feedback-list" v-for="item in feedbacks" :key="item.id">
+      <section class="feedback-list">
         <p v-if="feedbacks.length === 0">Sem resultados</p>
-        <FeedbackComponent v-bind:data="item" />
+        <FeedbackComponent
+          v-for="item in feedbacks"
+          :key="item.id"
+          v-bind:data="item"
+        />
       </section>
     </main>
   </div>
