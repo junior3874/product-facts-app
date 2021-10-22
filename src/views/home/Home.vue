@@ -112,7 +112,7 @@ import Dropdown from "../../components/Dropdown.vue";
 import FeatureBtn from "../../components/FeatureBtn.vue";
 import verifyFilterHasExist from "./utils/verifyFiltersHasExist";
 import Feedback, { Category } from "@/entity/Feedback";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 
 const sorteds = [
   "Most Upvote",
@@ -139,7 +139,7 @@ export default defineComponent({
 
     return {
       categorys: Category.categorys,
-      filteredBy: getCurrentFilteredByInQuery,
+      filteredBy: ref(getCurrentFilteredByInQuery),
       sortedBy: getCurrentSortedByInQuery,
     };
   },
