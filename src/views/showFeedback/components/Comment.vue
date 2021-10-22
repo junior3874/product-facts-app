@@ -12,7 +12,7 @@
     <button @click="commentIsVisible = true">replay</button>
 
     <p>
-      {{ commentData.content }}
+      <strong v-if="replyTo">@{{ replyTo }}</strong> {{ commentData.content }}
     </p>
     <div class="replies" v-if="commentData.replies">
       <Comment
@@ -24,6 +24,7 @@
         :style="{
           marginLeft: deepcases[deep],
         }"
+        :replyTo="commentData.user.username"
       />
     </div>
 
@@ -66,6 +67,10 @@ export default defineComponent({
       type: Number,
       required: true,
     },
+    replyTo: {
+      type: String,
+      required: false,
+    },
   },
 
   data() {
@@ -83,10 +88,7 @@ export default defineComponent({
     async postEventReplyComment() {
       const message: string =
         this.replyCommentRef.$refs.messageField.$el.firstChild.value.trim();
-      const res = await this.postReplyComment(
-        "@" + this.comment.user.username + " " + message,
-        this.comment.id
-      );
+      const res = await this.postReplyComment(message, this.comment.id);
       this.commentData.replies ??= [];
       this.commentData.replies.push(res);
 
