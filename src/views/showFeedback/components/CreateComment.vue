@@ -72,6 +72,7 @@ export default defineComponent({
 }
 
 .content-create-comment div {
+  margin-top: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
