@@ -1,5 +1,4 @@
-import Feedback from "@/entity/Feedback";
-import { expect, test, describe, jest } from "@jest/globals";
+import { expect, test, describe } from "@jest/globals";
 import filteredBy from "./sortedBy";
 
 describe("#filtered by", () => {
