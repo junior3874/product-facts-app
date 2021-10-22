@@ -1,12 +1,12 @@
 <template>
-  <div class="content" v-if="!loading">
-    <div class="top-content">
+  <div id="show-feedback-page" v-if="!loading">
+    <header class="top-content">
       <GoBack :gray="true" />
       <GenericBtn
         v-bind:style="{ backgroundColor: 'var(--light-blue)', width: '142px' }"
         text="Edit feedback"
       />
-    </div>
+    </header>
     <main>
       <FeedbackComponent v-bind:data="feedback" />
       <section v-if="feedback.comments" class="base-area">
